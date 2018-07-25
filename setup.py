@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-  name = 'Apitax-Drivers',
+  name = 'apitaxdrivers',
   packages = find_packages(), # this must be the same as the name above
   version = '0.0.1',
   description = 'A set of example and micro drivers which can be used as the basis of more robust API drivers or combined together to form a robust application.',
