@@ -12,7 +12,7 @@ class OpenstackDriver(Driver):
 
     def __init__(self):
         super().__init__()
-        self.users = read(getPath(State.paths['root'] + "/users.json"))
+        self.users = read(getPath(State.paths['root'] + "/app/users.json"))
 
     def getToken(self, response):
         return response.getResponseHeaders().get('X-Subject-Token')
