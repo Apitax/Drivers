@@ -21,6 +21,10 @@ setup(
     "Operating System :: OS Independent",
   ),
   install_requires = [
-    'apitax', 
+    'requests',
+    'python-gitlab',
+    'pygithub',
+    'gitpython',
+    'apitaxcore', 
   ],
 )
