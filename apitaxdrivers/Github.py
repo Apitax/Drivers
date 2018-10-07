@@ -1,9 +1,7 @@
-from apitax.integrations.Github import Github
-from apitax.drivers.Driver import Driver
-from apitax.utilities.Files import getAllFiles
-from apitax.utilities.Files import getPath
-from apitax.utilities.Files import createDir
-from pathlib import Path
+from scriptax.catalogs.ScriptCatalog import ScriptCatalog
+
+from apitaxdrivers.integrations.Github import Github
+from scriptax.drivers.Driver import Driver
 
 
 class GithubDriver(Driver):
@@ -12,31 +10,37 @@ class GithubDriver(Driver):
         super().__init__()
         self.git = Github(self.driverConfig.get('personal-access-token'), self.driverConfig.get('repo'))
 
-    def isApiAuthenticated(self):
-        return False
+    def isDriverConfigurable(self) -> bool:
+        return True
 
-    def isTokenable(self):
-        return False
+    def getDriverName(self) -> str:
+        return "github"
 
-    def getScriptsCatalog(self):
-        files = self.git.getFiles()
-        returner = {"scripts": []}
-        for file in files:
+    def getDriverDescription(self) -> str:
+        return "Provides access to a github repository for utilizing scripts"
+
+    def getDriverHelpEndpoint(self) -> str:
+        return "coming soon"
+
+    def getDriverTips(self) -> str:
+        return "coming soon"
+
+    def getDriverScriptCatalog(self) -> ScriptCatalog:
+        catalog = ScriptCatalog()
+        for file in self.git.getFiles():
             path = file.path
-            if (path[-3:] == '.ah'):
-                returner['scripts'].append({"label": path.split('/')[-1].split('.')[0].title(), "relative-path": path,
-                                            "path": self.git.getPath(path)})
-        return returner
+            if path[-3:] == '.ah':
+                catalog.add(label=path.split('/')[-1].split('.')[0].title(), path=self.git.getPath(path))
+        return catalog
 
-    def readScript(self, path):
+    def getDriverScript(self, path) -> str:
         return self.git.getFileContent(path)
 
-    def renameScript(self, pathOriginal, pathNew):
-        return self.git.renameFile(pathOriginal, pathNew)
+    def renameDriverScript(self, original, now) -> bool:
+        return self.git.renameFile(original, now)
 
-    # Save does update and create
-    def saveScript(self, path, content):
+    def saveDriverScript(self, path, content) -> bool:
         return self.git.createOrUpdate(path, content)
 
-    def deleteScript(self, path):
+    def deleteDriverScript(self, path) -> bool:
         return self.git.deleteFile(path=path)

@@ -1,10 +1,11 @@
-from apitax.integrations.Git import Git
+from apitaxdrivers.integrations.Git import Git
 
 from github import Github as GithubIntegration
 
 
 class Github(Git):
     def __init__(self, token, repo=None):
+        super().__init__()
         self.git = GithubIntegration(token)
         self.repo = None
         if (repo):

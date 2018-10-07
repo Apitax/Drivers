@@ -2,7 +2,7 @@ import base64
 
 
 class Git:
-    def __init__(self, token):
+    def __init__(self):
         self.git = None
         self.repo = None
         self.user = None
