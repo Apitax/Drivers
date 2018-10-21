@@ -25,7 +25,7 @@ setup(
         'python-gitlab',
         'pygithub',
         'gitpython',
-        'apitaxcore==0.0.5',
+        'apitaxcore==3.0.5',
         'commandtax==0.0.6',
         'scriptax==0.0.3'
     ],
