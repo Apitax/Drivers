@@ -1,10 +1,10 @@
 from scriptax.catalogs.ScriptCatalog import ScriptCatalog
 
 from apitaxdrivers.integrations.Github import Github
-from scriptax.drivers.Driver import Driver
+from scriptax.drivers.builtin.Scriptax import Scriptax
 
 
-class GithubDriver(Driver):
+class GithubDriver(Scriptax):
 
     def __init__(self):
         super().__init__()
