@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name='apitaxdrivers',
     packages=find_packages(),  # this must be the same as the name above
-    version='0.0.11',
+    version='0.0.12',
     description='A set of example and micro drivers which can be used as the basis of more robust API drivers or combined together to form a robust application.',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -27,6 +27,6 @@ setup(
         'gitpython',
         'apitaxcore==3.0.6',
         'commandtax==0.0.8',
-        'scriptax==0.0.4',
+        'scriptax==0.0.5',
     ],
 )
